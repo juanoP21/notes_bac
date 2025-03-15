@@ -21,6 +21,4 @@ app.use("/api/auth", require("./Routes/auth.js"));
 app.use("/api/",validarJWT, require("./Routes/route_note.js"));
 
 //Escuchar en puerto 4000
-app.listen(process.env.PORT, () => {
-  console.log("Servidor correindo en puerto", process.env.PORT);
-});
+module.exports = app;
