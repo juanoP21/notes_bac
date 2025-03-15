@@ -1,13 +1,15 @@
 const { Model, DataTypes } = require("sequelize");
-const {sequelize} = require("../database/config.js");	
+const { sequelize } = require("../database/config.js");
+const Notes = require("./Notes.js");
 class User extends Model {}
 
 User.init(
-  { user_id: {
-    type: DataTypes.UUID,
-    defaultValue: DataTypes.UUIDV4,
-    primaryKey: true,
-},
+  {
+    user_id: {
+      type: DataTypes.UUID,
+      defaultValue: DataTypes.UUIDV4,
+      primaryKey: true,
+    },
     password: {
       type: DataTypes.STRING,
     },
@@ -16,11 +18,16 @@ User.init(
     },
   },
   {
+    sequelize,
+    modelName: "User",
     
-    sequelize, 
-    modelName: 'User', 
-  },
+  }
 );
 
-// the defined model is the class itself
+User.hasMany(Notes, { foreignKey: "user_id" });
+Notes.belongsTo(User, { foreignKey: "user_id" });
+
+
+
+
 module.exports = User;
