@@ -1,4 +1,5 @@
 // const { Sequelize, Model, DataTypes } = require("sequelize");
+const { validarJWT } = require("./middlewares/validar-token");
 
 const express = require("express");
 require("dotenv").config();
@@ -17,7 +18,7 @@ const bodyParser = require("body-parser");
 app.use(bodyParser.json());
 
 app.use("/api/auth", require("./Routes/auth.js"));
-app.use("/api/", require("./Routes/route_note.js"));
+app.use("/api/",validarJWT, require("./Routes/route_note.js"));
 
 //Escuchar en puerto 4000
 app.listen(process.env.PORT, () => {
