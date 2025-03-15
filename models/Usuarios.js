@@ -1,11 +1,5 @@
-
-
-const { Sequelize, Model, DataTypes } = require("sequelize");
-const sequelize = new Sequelize( process.env.DB_DATABASE, process.env.DB_USERNAME, process.env.DB_PASSWORD, {
-    host: process.env.DB_HOST,
-    dialect:"mysql",port: process.env.DB_PORT
-  });
-
+const { Model, DataTypes } = require("sequelize");
+const {sequelize} = require("../database/config.js");	
 class User extends Model {}
 
 User.init(
@@ -22,9 +16,9 @@ User.init(
     },
   },
   {
-    // Other model options go here
-    sequelize, // We need to pass the connection instance
-    modelName: 'User', // We need to choose the model name
+    
+    sequelize, 
+    modelName: 'User', 
   },
 );
 
