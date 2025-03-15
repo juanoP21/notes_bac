@@ -17,6 +17,7 @@ const bodyParser = require("body-parser");
 app.use(bodyParser.json());
 
 app.use("/api/auth", require("./Routes/auth.js"));
+app.use("/api/", require("./Routes/route_note.js"));
 
 //Escuchar en puerto 4000
 app.listen(process.env.PORT, () => {

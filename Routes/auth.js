@@ -4,9 +4,7 @@ const { check } = require("express-validator");
 const { validarJWT } = require("../middlewares/validar-token");
 const Usuario = require("../models/Usuarios");
 
-
-
-Usuario.sync({ force: true });
+Usuario.sync();
 const {
   crearUsuario,
   loginUsuario,
