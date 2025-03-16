@@ -2,7 +2,7 @@
 
 ## Descripción del Proyecto
 
- Es la API RESTful que gestiona la autenticación de usuarios y la administración de notas personales para la aplicación NoteKeeper. Construida con Node.js y Express, esta API permite registrar e iniciar sesión a los usuarios, y gestionar (crear, leer, actualizar y eliminar) sus notas. La autenticación se realiza mediante JWT, y la base de datos MySQL.
+ Es la API RESTful que gestiona la autenticación de usuarios y la administración de notas personales para la aplicación. Construida con Node.js y Express, esta API permite registrar e iniciar sesión a los usuarios, y gestionar (crear, leer, actualizar y eliminar) sus notas. La autenticación se realiza mediante JWT, y la base de datos MySQL.
 
 ## 🛠️ Stack
 
