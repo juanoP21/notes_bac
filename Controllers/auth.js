@@ -48,7 +48,7 @@ const loginUsuario = async (req, res = express.response) => {
         msg: "El password No es valido",
       });
     }
-    const token = await generateJWT(usuario.id, usuario.username);
+    const token = await generateJWT(usuario.user_id, usuario.username);
     res.status(200).json({
       ok: true,
       token,
@@ -61,16 +61,16 @@ const loginUsuario = async (req, res = express.response) => {
     });
   }
 };
-// const revalidarToken = (req, res = express.response) => {
-//   const { uid, username } = req;
-//   const token = await(generateJWT(uid, username));
-//   res.json({
-//     ok: true,
-//   });
-// };
+const revalidarToken = async (req, res = express.response) => {
+  const { uid, username } = req;
+  const token = await(generateJWT(uid, username));
+  res.json({
+    ok: true,
+  });
+};
 
 module.exports = {
   loginUsuario,
   crearUsuario,
-  // revalidarToken,
+  revalidarToken,
 };

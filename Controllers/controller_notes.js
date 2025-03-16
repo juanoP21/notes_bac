@@ -1,13 +1,17 @@
 const Note = require("../models/Notes.js");
 const User = require("../models/Usuarios");
+const jwt = require("jsonwebtoken");
 
 // Crear nota: se espera recibir "user_id" en el body además de "title" y "content"
 const createNote = async (req, res) => {
+
+  const token = req.header("Authorization");
+  const { uid } = jwt.verify(token, process.env.SECRET_JWT_SEED);
   try {
     const note = new Note({
       title: req.body.title,
       content: req.body.content,
-      user_id: req.body.user_id,
+      user_id: uid,
     });
     const savedNote = await note.save();
     res.status(201).json(savedNote);
@@ -19,12 +23,11 @@ const createNote = async (req, res) => {
 // Obtener todas las notas incluyendo los datos del usuario asociado
 const getAllNotes = async (req, res) => {
   try {
-    const { user_id } = req.query; 
-    if (!user_id) {
-      return res.status(400).json({ message: "Falta el parámetro user_id" });
-    }
+    const token = req.header("Authorization");
+    const { uid } = jwt.verify(token, process.env.SECRET_JWT_SEED);
+
     const notes = await Note.findAll({
-      where: { user_id },
+      where: { user_id: uid },
       include: [
         {
           model: User,

@@ -22,6 +22,6 @@ router.post(
   ],
   crearUsuario
 );
-// router.get("/renew", validarJWT, revalidarToken);
+ router.get("/verificar", validarJWT, revalidarToken);
 
 module.exports = router;
