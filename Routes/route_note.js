@@ -19,7 +19,7 @@ router.get("/note/all/", getAllNotes);
 
 // Obtener una nota en particular y actualizarla según corresponda
 router.get("/note/getnote/:id", getNote, getNoteById);
-router.patch("/note/put/:id", getNote, updateNote);
+router.put("/note/put/:id", getNote, updateNote);
 router.delete("/note/delete/:id", getNote, deleteNote);
 
 async function getNote(req, res, next) {
